@@ -1,328 +1,1150 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaryan Fredrick | Mechanical Engineering Portfolio</title>
-    
-    <!-- Tailwind CSS (Play CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        slate: {
-                            850: '#151e2e',
-                            900: '#0f172a',
-                        },
-                        indigo: {
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aaryan Fredrick | Mechanical Engineering Portfolio</title>
+  <meta name="description" content="Mechanical Engineering Student at the University of Toronto. Designing for manufacturability, reliability, and performance.">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <style>
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        /* Abstract Glowing Backgrounds */
-        .blob {
-            position: absolute;
-            filter: blur(90px);
-            z-index: -1;
-            opacity: 0.4;
-            border-radius: 50%;
-        }
-    </style>
+  <style>
+    :root {
+      --bg-base: #0b0d11;
+      --bg-surface: #13161c;
+      --bg-surface-elevated: #1a1e26;
+      --border-subtle: #222733;
+      --border-focus: #3b82f688;
+      --accent: #4a9eff;
+      --accent-muted: #1e3a5f;
+      --accent-hover: #70b4ff;
+      --text-main: #f0f3f8;
+      --text-muted: #9aa4b2;
+      --text-dim: #64748b;
+      --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --transition-base: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+      --container-max: 1140px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      color: var(--text-main);
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--text-muted);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-base);
+    }
+
+    /* Layout Utilities */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background-color: var(--accent);
+      color: #0b0d11;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 0.875rem 1.6rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74, 158, 255, 0.25);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-surface);
+      border-color: var(--accent);
+      box-shadow: none;
+    }
+
+    /* 1. Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: background-color var(--transition-base), border-color var(--transition-base), backdrop-filter var(--transition-base);
+      border-bottom: 1px solid transparent;
+    }
+
+    header.scrolled {
+      background-color: rgba(11, 13, 17, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-color: var(--border-subtle);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-main);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width var(--transition-base);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .menu-toggle svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    /* 2. Hero Section */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 5rem;
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .hero-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-location svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent);
+    }
+
+    .hero-name {
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title {
+      font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title .highlight {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .hero-subtext {
+      font-size: 1.125rem;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* 3. About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-bio {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .about-bio p {
+      font-size: 1.03rem;
+      line-height: 1.75;
+    }
+
+    .about-bio .philosophy {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+      font-style: italic;
+      color: var(--text-main);
+      background: linear-gradient(90deg, rgba(74, 158, 255, 0.05) 0%, transparent 100%);
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .stats-inline {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .stat-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-desc {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .skills-column {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-group-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--border-subtle);
+    }
+
+    .pill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 0.45rem 0.9rem;
+      border-radius: 100px;
+      background-color: var(--bg-surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition-base);
+      cursor: default;
+    }
+
+    .badge:hover {
+      color: var(--text-main);
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(74, 158, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .badge-accent {
+      background-color: rgba(74, 158, 255, 0.07);
+      border-color: rgba(74, 158, 255, 0.25);
+      color: var(--accent);
+    }
+
+    /* 4. Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    .project-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(74, 158, 255, 0.4);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-banner {
+      height: 160px;
+      background: linear-gradient(135deg, #161b22 0%, #1c2330 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+    }
+
+    .card-banner-icon {
+      width: 48px;
+      height: 48px;
+      color: var(--accent);
+      opacity: 0.8;
+      transition: transform var(--transition-base), opacity var(--transition-base);
+    }
+
+    .project-card:hover .card-banner-icon {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: auto;
+      transition: gap var(--transition-base);
+    }
+
+    .card-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition-base);
+    }
+
+    .project-card:hover .card-link {
+      color: var(--accent-hover);
+    }
+
+    .project-card:hover .card-link svg {
+      transform: translateX(4px);
+    }
+
+    /* 5. Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .contact-text {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: border-color var(--transition-base), background-color var(--transition-base);
+    }
+
+    .contact-item:hover .contact-icon {
+      border-color: var(--accent);
+      background-color: var(--bg-surface-elevated);
+    }
+
+    .contact-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .contact-detail-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+    }
+
+    .contact-detail-value {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Form UI */
+    .contact-form-wrapper {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.25rem;
+      position: relative;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background-color: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      text-align: center;
+      background-color: rgba(74, 158, 255, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      animation: fadeIn 300ms ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.875rem;
+      color: var(--text-dim);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 992px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 5rem 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 4.5rem;
+        right: 0;
+        width: 100%;
+        background-color: var(--bg-base);
+        border-bottom: 1px solid var(--border-subtle);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 1.5rem 0;
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 0.85rem 1.5rem;
+        font-size: 1.1rem;
+      }
+
+      .nav-link::after {
+        display: none;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-wrapper {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-slate-800 dark:bg-slate-900 dark:text-gray-100 transition-colors duration-300">
+<body>
 
-    <!-- Sticky Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 tracking-tighter">AF.</a>
-            <div class="hidden md:flex space-x-8 items-center font-medium">
-                <a href="#about" class="hover:text-indigo-500 transition-colors">About</a>
-                <a href="#projects" class="hover:text-indigo-500 transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-indigo-500 transition-colors">Contact</a>
-                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Dark Mode">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:block"></i>
-                </button>
-            </div>
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center gap-4">
-                <button id="mobile-theme-toggle" class="p-2 text-gray-600 dark:text-gray-300">
-                    <i class="fa-solid fa-moon dark:hidden"></i>
-                    <i class="fa-solid fa-sun hidden dark:block"></i>
-                </button>
-                <button id="mobile-menu-btn" class="text-2xl text-gray-600 dark:text-gray-300">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 px-6 py-4 flex-col space-y-4 font-medium shadow-lg absolute w-full left-0">
-            <a href="#about" class="block hover:text-indigo-500 transition-colors">About</a>
-            <a href="#projects" class="block hover:text-indigo-500 transition-colors">Projects</a>
-            <a href="#contact" class="block hover:text-indigo-500 transition-colors">Contact</a>
-        </div>
-    </nav>
+  <!-- 1. Header & Navigation -->
+  <header id="main-header">
+    <div class="container nav-container">
+      <a href="#hero" class="logo" aria-label="Aaryan Fredrick Portfolio Home">
+        <span>Aaryan Fredrick</span>
+        <span class="logo-dot"></span>
+      </a>
 
-    <!-- Hero Section -->
-    <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <!-- Decorative Globs -->
-        <div class="blob bg-indigo-400 w-96 h-96 top-20 -left-20 dark:bg-indigo-600/40"></div>
-        <div class="blob bg-purple-400 w-80 h-80 bottom-20 right-0 dark:bg-purple-900/30"></div>
-        
-        <div class="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1 space-y-6">
-                <p class="text-indigo-600 dark:text-indigo-400 font-semibold tracking-wide uppercase">Hello, I'm</p>
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
-                    Aaryan <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Fredrick</span>
-                </h1>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed">
-                    A Bachelor of Applied Science in Mechanical Engineering + PEY Co-Op student at the University of Toronto[cite: 1]. I specialize in mechanical design, DFMA, and process optimization[cite: 1].
-                </p>
-                <div class="flex gap-4 pt-4">
-                    <a href="#projects" class="px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 shadow-lg shadow-indigo-500/30 transition-all">View Work</a>
-                    <a href="#contact" class="px-6 py-3 rounded-lg border-2 border-gray-300 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-400 font-medium transition-all">Contact Me</a>
-                </div>
-            </div>
-            <div class="order-1 md:order-2 flex justify-center md:justify-end relative">
-                <!-- Professional Headshot Placeholder -->
-                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden relative z-10 bg-gray-200 dark:bg-slate-700">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" alt="Aaryan Fredrick Headshot Placeholder" class="w-full h-full object-cover">
-                </div>
-                <!-- Background decorative ring -->
-                <div class="absolute w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-indigo-500/50 top-4 right-4 md:-right-4 z-0"></div>
-            </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. Hero Section -->
+    <section class="hero" id="hero">
+      <div class="container hero-content">
+        <div class="hero-location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Toronto, ON</span>
         </div>
+        <h1 class="hero-name">Aaryan Fredrick</h1>
+        <h2 class="hero-title">
+          Mechanical Engineering Student <span class="highlight">@ University of Toronto</span>
+        </h2>
+        <p class="hero-subtext">
+          Designing for manufacturability, reliability, and performance through rigorous analysis and shop-floor pragmatism.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn">
+            <span>Explore Projects</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
     </section>
 
-    <!-- About Me Section -->
-    <section id="about" class="py-24 bg-white dark:bg-slate-850 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
-                <span class="w-12 h-1 bg-indigo-500 rounded"></span> About Me
-            </h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Left: Bio -->
-                <div class="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
-                    <p>
-                        I am currently studying Mechanical Engineering at the University of Toronto, expecting to graduate in May 2029[cite: 1]. I have maintained a 3.61 GPA and have been on the Dean's Honours List for 4 consecutive terms[cite: 1].
-                    </p>
-                    <p>
-                        Beyond academics, I serve as the 2026 Discipline Representative for the Engineering Society and have been appointed to lead the hull design for the University of Toronto Concrete Canoe Design Team for the national competition[cite: 1]. My career philosophy is centered around creating optimized, manufacturable hardware designs and leveraging data-backed process adjustments[cite: 1].
-                    </p>
-                </div>
-                <!-- Right: Skills Grid -->
-                <div class="bg-gray-50 dark:bg-slate-900 rounded-2xl p-8 border border-gray-100 dark:border-slate-800 shadow-sm">
-                    <h3 class="text-xl font-bold mb-6 text-gray-800 dark:text-white">Core Competencies</h3>
-                    
-                    <div class="mb-4">
-                        <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">Technologies</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">SolidWorks[cite: 1]</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">AutoCAD[cite: 1]</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">MATLAB[cite: 1]</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">Python[cite: 1]</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">ANSYS[cite: 1]</span>
-                            <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">Tekla[cite: 1]</span>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">Skills & Certifications</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">CSWA Certified[cite: 1]</span>
-                            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">Mechanical Design[cite: 1]</span>
-                            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">DFMA[cite: 1]</span>
-                            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">Process Optimization[cite: 1]</span>
-                            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">Project Management[cite: 1]</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- 3. About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Background</span>
+          <h2 class="section-title">About Me</h2>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 relative">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
-                <span class="w-12 h-1 bg-indigo-500 rounded"></span> Featured Projects & Experience
-            </h2>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white dark:bg-slate-850 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop" alt="ONT Enclosure" class="w-full h-48 object-cover border-b border-gray-100 dark:border-slate-800">
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">Integrated ONT Enclosure</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-1">
-                            Led end-to-end mechanical design of an integrated ONT enclosure at Nokia, achieving an estimated 10% footprint saving[cite: 1]. Optimized designs through DFMA, standardizing external parts for cost savings of approx. 30%[cite: 1].
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded">SolidWorks</span>
-                            <span class="text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded">Thermal Analysis</span>
-                        </div>
-                        <div class="flex gap-4 border-t border-gray-100 dark:border-slate-800 pt-4 mt-auto">
-                            <a href="#" class="text-gray-500 hover:text-indigo-500 transition-colors" title="GitHub Repo"><i class="fa-brands fa-github text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-indigo-500 transition-colors" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i></a>
-                        </div>
-                    </div>
-                </div>
+        <div class="about-grid">
+          <!-- Left Column: Biography -->
+          <div class="about-bio">
+            <p>
+              I am currently pursuing a Bachelor of Applied Science in Mechanical Engineering with the PEY Co-Op program at the University of Toronto (Sept 2024 – May 2029 expected), maintaining a 3.61/4.0 GPA with 4x Dean's Honours List distinctions.
+            </p>
+            <p>
+              My hands-on industry exposure spans mechanical design at Nokia, manufacturing and fabrication at Oasis Metal Manufacturing, and heavy vehicle systems at Al Shirawi Enterprises across Chennai and Dubai. On campus, I serve in multiple Engineering Society leadership capacities — including Class Rep, Discipline Rep, Ombudsperson, and rep on the Undergraduate Assessment Committee — as well as Hull & Structural Executive on the U of T Concrete Canoe Design Team.
+            </p>
+            <p class="philosophy">
+              "I believe in designing practical, manufacturable solutions that balance performance, cost, and reliability — grounded in robust design software and real-world shop-floor experience."
+            </p>
 
-                <!-- Card 2 -->
-                <div class="bg-white dark:bg-slate-850 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                    <img src="https://images.unsplash.com/photo-1565439390234-7d526017b2b5?q=80&w=600&auto=format&fit=crop" alt="Process Optimization" class="w-full h-48 object-cover border-b border-gray-100 dark:border-slate-800">
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">Fabrication & CNC Optimization</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-1">
-                            Produced precision AutoCAD and Tekla fabrication drawings at Oasis Metal Manufacturing, cutting revision cycles by 10%[cite: 1]. Conducted time-motion studies to deliver process adjustments that reduced cycle times by 10% for repeat orders[cite: 1].
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded">AutoCAD</span>
-                            <span class="text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded">Tekla</span>
-                        </div>
-                        <div class="flex gap-4 border-t border-gray-100 dark:border-slate-800 pt-4 mt-auto">
-                            <a href="#" class="text-gray-500 hover:text-indigo-500 transition-colors" title="GitHub Repo"><i class="fa-brands fa-github text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-indigo-500 transition-colors" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white dark:bg-slate-850 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-800 hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                    <img src="https://images.unsplash.com/photo-1516383740770-fbcc5ccbece0?q=80&w=600&auto=format&fit=crop" alt="Soundproofing Project" class="w-full h-48 object-cover border-b border-gray-100 dark:border-slate-800">
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2">Chestnut Residence Soundproofing</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-1">
-                            Led a team of five to produce an optimized noise-reduction solution for student residence rooms, earning a top 20 selection out of nearly 200 faculty teams[cite: 1]. Utilized ANSYS for audio analysis and structural planning[cite: 1].
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded">ANSYS</span>
-                            <span class="text-xs font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded">Project Mgmt</span>
-                        </div>
-                        <div class="flex gap-4 border-t border-gray-100 dark:border-slate-800 pt-4 mt-auto">
-                            <a href="#" class="text-gray-500 hover:text-indigo-500 transition-colors" title="GitHub Repo"><i class="fa-brands fa-github text-xl"></i></a>
-                            <a href="#" class="text-gray-500 hover:text-indigo-500 transition-colors" title="Live Demo"><i class="fa-solid fa-arrow-up-right-from-square text-xl"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="stats-inline">
+              <div class="stat-card">
+                <div class="stat-number">3.61</div>
+                <div class="stat-desc">Cumulative GPA / 4.0 Scale</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">4x</div>
+                <div class="stat-desc">Dean's Honours List</div>
+              </div>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white dark:bg-slate-850 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+          <!-- Right Column: Skills Badges -->
+          <div class="skills-column">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-4">
-                    <span class="w-12 h-1 bg-indigo-500 rounded"></span> Get In Touch
-                </h2>
-                <p class="text-gray-600 dark:text-gray-400 mb-8 text-lg">
-                    I'm always open to discussing new opportunities, mechanical engineering roles, and innovative projects. Feel free to reach out via the form or my social channels.
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 text-gray-700 dark:text-gray-300">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-slate-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <a href="mailto:aaryan.fredrick@mail.utoronto.ca" class="hover:text-indigo-500 transition-colors">aaryan.fredrick@mail.utoronto.ca[cite: 1]</a>
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-700 dark:text-gray-300">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-slate-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <span>(437) 556-4518[cite: 1]</span>
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-700 dark:text-gray-300">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-slate-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <span>Toronto, ON, Canada[cite: 1]</span>
-                    </div>
-                    <div class="flex items-center gap-4 text-gray-700 dark:text-gray-300">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 dark:bg-slate-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </div>
-                        <a href="https://linkedin.com/in/aaryan-fredrick-151518327/" target="_blank" class="hover:text-indigo-500 transition-colors">LinkedIn Profile[cite: 1]</a>
-                    </div>
-                </div>
+              <h3 class="skill-group-title">Software & Tools</h3>
+              <div class="pill-cloud">
+                <span class="badge">SolidWorks</span>
+                <span class="badge">AutoCAD</span>
+                <span class="badge">Tekla</span>
+                <span class="badge">MATLAB</span>
+                <span class="badge">Python</span>
+                <span class="badge">Minitab</span>
+                <span class="badge">Microsoft Office</span>
+                <span class="badge">Excel</span>
+              </div>
             </div>
-            
-            <!-- Contact Form UI -->
-            <form class="bg-gray-50 dark:bg-slate-900 rounded-2xl p-8 border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col gap-4" onsubmit="event.preventDefault();">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
-                    <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all" placeholder="Your Name" required>
-                </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-                    <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all" placeholder="you@example.com" required>
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-                    <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all resize-none" placeholder="Your message..." required></textarea>
-                </div>
-                <button type="submit" class="w-full mt-2 bg-indigo-600 text-white font-medium py-3 rounded-lg hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/30">
-                    Send Message
-                </button>
-            </form>
+
+            <div>
+              <h3 class="skill-group-title">Core Competencies</h3>
+              <div class="pill-cloud">
+                <span class="badge">Mechanical Design</span>
+                <span class="badge badge-accent">DFMA</span>
+                <span class="badge">Process Optimization</span>
+                <span class="badge">Thermal & Structural Analysis</span>
+                <span class="badge">Project Management</span>
+                <span class="badge">Leadership</span>
+                <span class="badge">Public Speaking</span>
+                <span class="badge">Written Communication</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="skill-group-title">Certifications & Training</h3>
+              <div class="pill-cloud">
+                <span class="badge badge-accent">CSWA (Certified SolidWorks Associate)</span>
+                <span class="badge">MATLAB Onramp</span>
+                <span class="badge">George Brown Machining</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-8 text-center text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-slate-800">
-        <p>&copy; 2026 Aaryan Fredrick. All rights reserved.</p>
-    </footer>
+    <!-- 4. Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Portfolio</span>
+          <h2 class="section-title">Selected Projects</h2>
+        </div>
 
-    <!-- Interactive Scripts -->
-    <script>
-        // Theme Toggle Logic
-        const html = document.documentElement;
-        const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
-        
-        themeToggles.forEach(btn => {
-            if(btn) {
-                btn.addEventListener('click', () => {
-                    html.classList.toggle('dark');
-                });
-            }
+        <div class="projects-grid">
+          <!-- Card 1 -->
+          <article class="project-card">
+            <div class="card-banner" aria-hidden="true">
+              <svg class="card-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="card-body">
+              <span class="card-meta">Product Development &bull; DFMA</span>
+              <h3 class="card-title">Nokia ONT Enclosure Design</h3>
+              <p class="card-desc">
+                End-to-end SolidWorks design of an integrated ONT enclosure, coordinating PCB, heat sink, and port layouts — achieving a 10% footprint reduction and ~30% cost savings through DFMA-driven manufacturing optimization.
+              </p>
+              <a href="#" class="card-link" aria-label="View Nokia ONT Enclosure Design details">
+                <span>View Project</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="project-card">
+            <div class="card-banner" aria-hidden="true">
+              <svg class="card-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div>
+            <div class="card-body">
+              <span class="card-meta">Industrial &bull; Manufacturing</span>
+              <h3 class="card-title">Fabrication Optimization &mdash; Oasis Metal</h3>
+              <p class="card-desc">
+                Time-motion studies on CNC laser cutters and hydraulic benders uncovered a 40% bottleneck; delivered data-backed adjustments that cut theoretical cycle time by 10% for repeat orders.
+              </p>
+              <a href="#" class="card-link" aria-label="View Fabrication Process Optimization details">
+                <span>View Project</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="project-card">
+            <div class="card-banner" aria-hidden="true">
+              <svg class="card-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </div>
+            <div class="card-body">
+              <span class="card-meta">Acoustics &bull; FEA Analysis</span>
+              <h3 class="card-title">Soundproofing Chestnut Residence Rooms</h3>
+              <p class="card-desc">
+                Led a 5-person team to design a noise-reduction solution for elevator-adjacent residence rooms using ANSYS audio analysis and optimized floor planning — ranked top 20 of ~200 teams university-wide.
+              </p>
+              <a href="#" class="card-link" aria-label="View Soundproofing Chestnut Residence details">
+                <span>View Project</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Contact Section -->
+    <section class="section" id="contact" style="border-bottom: none;">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Left: Information & Socials -->
+          <div class="contact-info">
+            <div>
+              <span class="section-tag">Get in Touch</span>
+              <h2 class="section-title">Let's Connect</h2>
+            </div>
+            <p class="contact-text">
+              I am always open to discussing new mechanical engineering opportunities, innovative design projects, or collaborative team initiatives. Feel free to reach out directly.
+            </p>
+
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:aaryan.fredrick@mail.utoronto.ca" class="contact-item">
+                  <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-detail-label">Email</div>
+                    <div class="contact-detail-value">aaryan.fredrick@mail.utoronto.ca</div>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://linkedin.com/in/aaryan-fredrick-151518327/" target="_blank" rel="noopener noreferrer" class="contact-item">
+                  <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect x="2" y="9" width="4" height="12"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-detail-label">LinkedIn</div>
+                    <div class="contact-detail-value">linkedin.com/in/aaryan-fredrick</div>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://github.com/aaryanfredrick" target="_blank" rel="noopener noreferrer" class="contact-item">
+                  <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-detail-label">GitHub</div>
+                    <div class="contact-detail-value">github.com/aaryanfredrick</div>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a href="tel:+14375564518" class="contact-item">
+                  <div class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-detail-label">Phone</div>
+                    <div class="contact-detail-value">(437) 556-4518</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Contact Form -->
+          <div class="contact-form-wrapper">
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" id="name" name="name" class="form-input" required autocomplete="name" placeholder="Jane Doe">
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="jane@example.com">
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" class="form-textarea" required placeholder="Let's discuss an engineering challenge or project..."></textarea>
+              </div>
+
+              <button type="submit" class="btn" style="width: 100%; justify-content: center;">
+                <span>Send Message</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+
+              <div id="form-status" class="form-status" role="status" aria-live="polite">
+                Message sent successfully! Thank you for reaching out.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> Aaryan Fredrick. All rights reserved.</p>
+      <p>Built with care &bull; Toronto, Ontario</p>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Footer Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Header Scroll Styling
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Close menu on link click (mobile)
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', false);
+        });
+      });
+
+      // Active Navigation Link on Scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navItems = document.querySelectorAll('.nav-link');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPosition = window.pageYOffset + 200;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
         });
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        navItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('href') === `#${current}`) {
+            item.classList.add('active');
+          }
+        });
+      });
 
-        if(mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            // Close menu on link click
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+      // Form Handling UI
+      const contactForm = document.getElementById('contact-form');
+      const formStatus = document.getElementById('form-status');
+
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Simple validation feedback & confirmation toggle
+        if (contactForm.checkValidity()) {
+          formStatus.style.display = 'block';
+          contactForm.reset();
+
+          setTimeout(() => {
+            formStatus.style.display = 'none';
+          }, 6000);
         }
+      });
+    });
+  </script>
+</body>
+</html>
     </script>
 </body>
 </html>
