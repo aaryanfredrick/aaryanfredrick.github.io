@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaryan Fredrick | Mechanical Engineering Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #00204e;
+            --secondary-color: #005A9C;
+            --accent-color: #e67e22;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header / Hero Section */
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(0, 32, 78, 0.85), rgba(0, 32, 78, 0.85)), url('https://source.unsplash.com/random/1600x900/?engineering,design') no-repeat center center/cover;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #d35400;
+        }
+
+        /* Containers and Grids */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 4rem 2rem;
+        }
+
+        h2.section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .card h4 {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        ul.bullet-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul.bullet-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tags for Skills/Interests */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: #e1e8f0;
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Links */
+        .action-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .action-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        #contact h2.section-title {
+            color: white;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background: #00122e;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        @media(max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .nav-container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <h1>Aaryan Fredrick[cite: 1]</h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header id="home">
+        <h1>Aaryan Fredrick[cite: 1]</h1>
+        <p>Mechanical Engineering Student at the University of Toronto[cite: 1] specializing in mechanical design, process optimization, and computer-aided engineering.</p>
+        <a href="#projects" class="btn">Explore My Work</a>
+    </header>
+
+    <!-- About & Education Section -->
+    <section id="about" class="container">
+        <h2 class="section-title">Education & Skills</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3>University of Toronto[cite: 1]</h3>
+                <h4>Bachelor of Applied Science in Mechanical Engineering + PEY Co-Op[cite: 1]</h4>
+                <p><strong>Expected Graduation:</strong> May 2029[cite: 1]</p>
+                <p><strong>GPA:</strong> 3.61/4.0 | 4x Consecutive Terms Dean's Honours List[cite: 1]</p>
+                <br>
+                <p><strong>Leadership & Involvement:</strong></p>
+                <ul class="bullet-list">
+                    <li>Engineering Society: 2025 Class Representative, 2026 Discipline Representative, 2026 Ombudsperson, 2026 Undergraduate Assessment Committee Student Representative[cite: 1]</li>
+                    <li>University of Toronto Concrete Canoe Design Team: 2026 Hull & Structural Executive (Newly appointed to lead hull design for national competition)[cite: 1]</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Technical Proficiencies</h3>
+                <p>I have a sustained practical engagement with computer-aided design and numerical computing software for complex engineering projects.</p>
+                <div class="tag-container">
+                    <span class="tag">SolidWorks[cite: 1]</span>
+                    <span class="tag">MATLAB[cite: 1]</span>
+                    <span class="tag">AutoCAD[cite: 1]</span>
+                    <span class="tag">Python[cite: 1]</span>
+                    <span class="tag">ANSYS[cite: 1]</span>
+                    <span class="tag">Tekla[cite: 1]</span>
+                    <span class="tag">Minitab[cite: 1]</span>
+                    <span class="tag">DFMA[cite: 1]</span>
+                </div>
+                <br>
+                <h3>Certifications[cite: 1]</h3>
+                <ul class="bullet-list">
+                    <li>CSWA (Certified SolidWorks Associate)[cite: 1]</li>
+                    <li>MATLAB Onramp[cite: 1]</li>
+                    <li>George Brown Machining[cite: 1]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="container" style="background-color: #fff;">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="grid-3">
+            
+            <div class="card">
+                <h3>Mechanical Engineering Intern[cite: 1]</h3>
+                <h4>Nokia | Summer 2026 | Chennai, TN, India[cite: 1]</h4>
+                <ul class="bullet-list">
+                    <li>Led end-to-end mechanical design of an integrated ONT enclosure in SolidWorks, coordinating PCB, heat sink, and port layouts within compact assemblies, with an estimated 10% footprint saving achieved.[cite: 1]</li>
+                    <li>Optimized designs for high-volume manufacturing through DFMA reviews, applying injection molding best practices, reducing part count and standardizing external parts for cost savings of approximately 30%.[cite: 1]</li>
+                    <li>Iterated 7-8 times over hardware reliability through thermal and structural analysis, making changes including: reducing clearances, adding ribs, changing fastener/locating pin positions.[cite: 1]</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Manufacturing Intern[cite: 1]</h3>
+                <h4>Oasis Metal Manufacturing | Summer 2025 | Dubai, UAE[cite: 1]</h4>
+                <ul class="bullet-list">
+                    <li>Produced precision AutoCAD and Tekla fabrication drawings of gratings, slashing client-initiated revision cycles by 10% through improved first-pass dimensional accuracy.[cite: 1]</li>
+                    <li>Conducted time-motion studies on CNC laser cutters and hydraulic benders, exposing a 40% bottleneck; delivered data-backed process adjustments that theoretically reduced overall cycle time by 10% for repeat orders.[cite: 1]</li>
+                    <li>Guaranteed zero-dispatch delays by verifying galvanization thickness and paint specs against client POs, while supporting ISO 9001 compliance through spot audits that caught and corrected 5+ safety and documentation gaps.[cite: 1]</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Marking and Heavy Vehicle Workshop Intern[cite: 1]</h3>
+                <h4>Al Shirawi Enterprises | Summer 2023 | Dubai, UAE[cite: 1]</h4>
+                <ul class="bullet-list">
+                    <li>Collected and analyzed post-transaction feedback using KPIs tied to service quality with the Marketing Department.[cite: 1]</li>
+                    <li>Gained hands-on experience by shadowing technical teams in the Scania service workshop to observe maintenance workflows, diagnostics, and heavy vehicle systems.[cite: 1]</li>
+                    <li>Developed understanding of ISO 9001:2015 quality standards and the role of documentation in continuous improvement systems.[cite: 1]</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+        <h2 class="section-title">Engineering Projects</h2>
+        <div class="grid-2">
+            
+            <div class="card">
+                <h3>Soundproofing Chestnut Residence Rooms[cite: 1]</h3>
+                <h4>January - April 2025[cite: 1]</h4>
+                <p>Led a team of five to produce a noise-reduction solution for elevator-adjacent student residence rooms, and selected as a top 20 project out of nearly 200 teams within the University of Toronto Engineering faculty.[cite: 1]</p>
+                <p>Used ANSYS for audio analysis, Gantt Charts, and Microsoft Office to produce a highly detailed solution with an optimized floor plan, rigorously selected carpeting and soundproofing.[cite: 1]</p>
+                <a href="#" class="action-link">View Project Documentation &rarr;</a>
+            </div>
+
+            <div class="card">
+                <h3>ONT Enclosure Design & Prototyping</h3>
+                <h4>Independent / Academic Project</h4>
+                <p>Detailed structural and thermal analysis utilizing finite difference equations and 3D modeling assemblies to validate hardware reliability under stress conditions.</p>
+                <a href="#" class="action-link">View Repository &rarr;</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests" class="container" style="background-color: #fff;">
+        <h2 class="section-title">Beyond Engineering</h2>
+        <div class="card" style="text-align: center; max-width: 800px; margin: auto;">
+            <p>I believe in applying structured thinking and passion to areas outside of academics. Here are a few of my core interests[cite: 1]:</p>
+            <div class="tag-container" style="justify-content: center; margin-top: 20px;">
+                <span class="tag">Basketball[cite: 1]</span>
+                <span class="tag">Formula One[cite: 1]</span>
+                <span class="tag">Baking & Culinary Workflows[cite: 1]</span>
+                <span class="tag">Legal thrillers[cite: 1]</span>
+                <span class="tag">Event Planning and Management[cite: 1]</span>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.95rem;">
+                Whether I am analyzing the aerodynamics of Formula One cars[cite: 1] or planning out strict timelines for complex, multi-course dinner preparations, I enjoy optimizing workflows in everything I do.
+            </p>
+            <a href="#" class="action-link">See My Baking & F1 Setup Photos &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="container">
+        <h2 class="section-title">Latest Blog Posts</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>DFMA: Standardizing Parts for Cost Efficiency</h3>
+                <p>A deep dive into how I applied injection molding best practices to reduce part counts by 30% during my internship.</p>
+                <a href="#" class="action-link">Read Post &rarr;</a>
+            </div>
+            <div class="card">
+                <h3>The Logistics of a Multi-Course Dinner</h3>
+                <p>How I treat overnight prep workflows and menu planning like a manufacturing time-motion study.</p>
+                <a href="#" class="action-link">Read Post &rarr;</a>
+            </div>
+            <div class="card">
+                <h3>Optimizing Numerical Computing Workflows</h3>
+                <p>My approach to structuring finite difference equations and isolating specific variables for stress analysis.</p>
+                <a href="#" class="action-link">Read Post &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <p>I am always open to discussing mechanical design opportunities, process optimization, or even the latest Formula One race[cite: 1].</p>
+        <div class="social-links">
+            <a href="mailto:aaryan.fredrick@mail.utoronto.ca">aaryan.fredrick@mail.utoronto.ca[cite: 1]</a>
+            <a href="tel:4375564518">(437) 556-4518[cite: 1]</a>
+            <a href="https://linkedin.com/in/aaryan-fredrick-151518327/" target="_blank">LinkedIn[cite: 1]</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aaryan Fredrick. Built with HTML & CSS.</p>
+    </footer>
+
+</body>
+</html>
